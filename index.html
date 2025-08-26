@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>Pesquisa - Retiro da Igreja</title>
+  <title>Pesquisa - Renascer 2025</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -45,26 +45,33 @@
 <body>
   <div class="container">
     <h2>Fale pra gente como ficou sabendo do Renascer 2025?</h2>
-    <form 
-      action="https://formsubmit.co/comunicacao@comunidadecaju.com.br" 
-      method="POST"
-      onsubmit="window.location.href='https://drive.google.com/file/d/1DyNDxWyLASn6pLltg-bUVR4HSLLkhY0S/view?usp=sharing';">
-
-      <select name="Como_soube" required>
+    <form id="pesquisaForm">
+      <select name="Como_soube" id="Como_soube" required>
         <option value="" disabled selected>Selecione...</option>
         <option>Instagram</option>
-        <option>WhatsApp</option>
+        <option>Frequento missas, formações e eventos da CAJU</option>
         <option>Amigos</option>
-        <option>Paróquia</option>
-        <option>Outros</option>
+        <option>Divulgação na minha escola</option>
+        <option>Divulgação na minha igreja/comunidade</option>
+        <option>Telas em restaurantes, academias e supermercados, etc</option>
       </select>
-
-      <!-- Configurações extras -->
-      <input type="hidden" name="_captcha" value="false">
-      <input type="hidden" name="_template" value="table">
-
       <button type="submit">Enviar</button>
     </form>
   </div>
+
+  <script>
+    const scriptURL = "https://script.google.com/macros/s/AKfycbycFd2TW3Q4VJ6djGho2TM4f7mWo_2geUx-3tI8B6aLo27xXHC3wvBVAKrC_7DaUJjW/exec"; // Substitua pelo link do Apps Script
+    const pdfURL = "https://drive.google.com/file/d/1DyNDxWyLASn6pLltg-bUVR4HSLLkhY0S/view?usp=sharing"; // Substitua pelo link do seu PDF
+
+    document.getElementById("pesquisaForm").addEventListener("submit", e => {
+      e.preventDefault();
+      const formData = new FormData(e.target);
+      fetch(scriptURL, { method: "POST", body: formData })
+        .then(response => {
+          window.location.href = pdfURL; // Redireciona para o PDF
+        })
+        .catch(error => alert("Erro ao enviar: " + error.message));
+    });
+  </script>
 </body>
 </html>

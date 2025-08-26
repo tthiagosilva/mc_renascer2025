@@ -2,6 +2,7 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Pesquisa - Renascer 2025</title>
   <style>
     body {
@@ -11,34 +12,54 @@
       justify-content: center;
       align-items: center;
       height: 100vh;
+      margin: 0;
+      padding: 20px;
     }
     .container {
       background: #fff;
-      padding: 30px;
+      padding: 25px;
       border-radius: 15px;
       box-shadow: 0px 4px 12px rgba(0,0,0,0.1);
       text-align: center;
-      width: 350px;
+      width: 100%;
+      max-width: 400px; /* largura máxima para desktop */
     }
     h2 {
       color: #333;
+      font-size: 1.4rem;
+      margin-bottom: 20px;
     }
     select, button {
       width: 100%;
-      padding: 12px;
+      padding: 14px;
       margin: 10px 0;
       border-radius: 8px;
       border: 1px solid #ccc;
-      font-size: 16px;
+      font-size: 1rem;
     }
     button {
       background: #4CAF50;
       color: white;
       cursor: pointer;
       border: none;
+      transition: background 0.3s;
     }
     button:hover {
       background: #45a049;
+    }
+
+    /* Responsividade extra */
+    @media (max-width: 480px) {
+      .container {
+        padding: 20px;
+      }
+      h2 {
+        font-size: 1.2rem;
+      }
+      select, button {
+        font-size: 0.95rem;
+        padding: 12px;
+      }
     }
   </style>
 </head>
@@ -63,14 +84,18 @@
     const scriptURL = "https://script.google.com/macros/s/AKfycbycFd2TW3Q4VJ6djGho2TM4f7mWo_2geUx-3tI8B6aLo27xXHC3wvBVAKrC_7DaUJjW/exec"; // Substitua pelo link do Apps Script
     const pdfURL = "https://drive.google.com/file/d/1DyNDxWyLASn6pLltg-bUVR4HSLLkhY0S/view?usp=sharing"; // Substitua pelo link do seu PDF
 
+
     document.getElementById("pesquisaForm").addEventListener("submit", e => {
       e.preventDefault();
       const formData = new FormData(e.target);
-      fetch(scriptURL, { method: "POST", body: formData })
-        .then(response => {
-          window.location.href = pdfURL; // Redireciona para o PDF
-        })
-        .catch(error => alert("Erro ao enviar: " + error.message));
+      fetch(scriptURL, {
+        method: "POST",
+        body: new URLSearchParams(formData)
+      })
+      .then(() => {
+        window.location.href = pdfURL;
+      })
+      .catch(error => alert("Erro ao enviar: " + error.message));
     });
   </script>
 </body>

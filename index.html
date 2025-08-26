@@ -44,11 +44,14 @@
 
     /* ===== Imagem topo ===== */
     .top-image {
-      max-width: 180px;
-      margin-bottom: 20px;
-      border-radius: 15px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-    }
+  max-width: 180px;  /* tamanho no desktop */
+  margin-bottom: 20px;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  width: 100%;        /* permite ajustar proporcionalmente */
+  height: auto;
+}
+
 
     /* ===== Título ===== */
     h2 {
@@ -89,7 +92,7 @@
     @media (max-width: 480px) {
       .container { padding: 25px 15px; }
       h2 { font-size: 1.3rem; margin-bottom: 20px; }
-      .top-image { max-width: 140px; margin-bottom: 15px; }
+      .top-image {max-width: 120px;  /* reduz a logo no celular */margin-bottom: 15px;}
       select, button { font-size: 0.95rem; padding: 14px; }
     }
 
